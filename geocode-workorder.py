@@ -21,13 +21,6 @@ INPUT_FQFN = os.path.abspath(INPUT)
 INPUT_DIR = os.path.split(INPUT_FQFN)[0]
 INPUT_FILE = os.path.split(INPUT_FQFN)[1]
 
-
-
-print("file:  " + INPUT_FILE)
-print("dir:   " + INPUT_DIR)
-print("fqfn:  " + INPUT_FQFN)
-
-
 NORTH_BOUNDING_COORD = -8.000
 SOUTH_BOUNDING_COORD = -45.000
 EAST_BOUNDING_COORD = 156.000
@@ -105,16 +98,16 @@ while row < len(df.index):
 
     row+=1
 
-ext = "csv"
+ext = ".csv"
 save_file = '/lat-lon-gmaps-api'
-save_fqfn = f'{INPUT_DIR}{save_file}.{ext}'
+save_fqfn = f'{INPUT_DIR}{save_file}{ext}'
 if os.path.isfile(save_fqfn) == False:
     df.to_csv(save_fqfn)
 else:
     append_num = 1
-    while os.path.isfile(f'{INPUT_DIR}{save_file}({append_num}).{ext}') == True:
+    while os.path.isfile(f'{INPUT_DIR}{save_file}({append_num}){ext}') == True:
         append_num+=1
-    save_fqfn = f'{INPUT_DIR}{save_file}({append_num}).{ext}'
+    save_fqfn = f'{INPUT_DIR}{save_file}({append_num}){ext}'
     df.to_csv(save_fqfn)
 
 print("\n")
