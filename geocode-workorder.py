@@ -65,9 +65,9 @@ while row < len(df.index):
     cell_lon_isnull = df['Longitude'].isnull().iloc[row]
 
     address = f"{df['Address 1'].iloc[row]}, {df['Address 2'].iloc[row]}, {df['Address 3'].iloc[row]}, {df['City'].iloc[row]} {df['State Or Province'].iloc[row]} {df['Postal Code'].iloc[row]}"
-    address_encode = address.replace("nan,", "").strip()
+    address_encode = address.replace("nan, ", "").strip()
     print("")
-    print(f'Row {row+2} - {address}')
+    print(f'Row {row+2} - {address_encode}')
 
         # Check if LAT/LON value is already present
     if cell_lat_isnull == False or cell_lon_isnull == False:
@@ -91,8 +91,8 @@ while row < len(df.index):
     set_lat = response_json_payload.get('geometry').get('location').get('lat')
     set_lon = response_json_payload.get('geometry').get('location').get('lng')
 
-    df.loc[row, 'Latitude'] = set_lat
-    df.loc[row, 'Longitude'] = set_lon
+    df.iloc[row].at['Latitude'] = set_lat
+    df.iloc[row].at['Longitude'] = set_lon
 
     print(f'    {bcolors.GREEN}GOT COORDS: {set_lat}, {set_lon}{bcolors.RESET}')
 
@@ -115,4 +115,4 @@ if len(errors) > 0:
     print(f'{bcolors.RED}{bcolors.UNDERLINE}ERRORS')
     print(*errors,sep='\n')
     print("\n")
-print(f'{bcolors.GREEN}{bcolors.BOLD}COMPLETE{bcolors.RESET}  file saved to {save_fqfn}')
+print(f'{bcolors.GREEN}{bcolors.BOLD}COMPLETE{bcolors.RESET}  file saved to {bcolors.BOLD}{save_fqfn}{bcolors.RESET}')
