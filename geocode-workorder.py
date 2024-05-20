@@ -91,8 +91,8 @@ while row < len(df.index):
     set_lat = response_json_payload.get('geometry').get('location').get('lat')
     set_lon = response_json_payload.get('geometry').get('location').get('lng')
 
-    df['Latitude'].iloc[row] = set_lat
-    df['Longitude'].iloc[row] = set_lon
+    df.loc[row, 'Latitude'] = set_lat
+    df.loc[row, 'Longitude'] = set_lon
 
     print(f'    {bcolors.GREEN}GOT COORDS: {set_lat}, {set_lon}{bcolors.RESET}')
 
