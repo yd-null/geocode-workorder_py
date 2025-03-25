@@ -1,3 +1,14 @@
+#! /usr/bin/env requires-python
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "googlemaps",
+#     "openpyxl",
+#     "pandas",
+# ]
+# ///
+
 import os
 import sys
 import datetime
@@ -112,7 +123,7 @@ else:
 
 print("\n")
 if len(errors) > 0:
-    print(f'{bcolors.RED}{bcolors.UNDERLINE}ERRORS')
+    print(f'{bcolors.RED}{bcolors.UNDERLINE}ERRORS{bcolors.RESET}')
     print(*errors,sep='\n')
     print("\n")
 print(f'{bcolors.GREEN}{bcolors.BOLD}COMPLETE{bcolors.RESET}  file saved to {bcolors.BOLD}{save_fqfn}{bcolors.RESET}')
