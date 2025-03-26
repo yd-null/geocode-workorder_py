@@ -1,5 +1,5 @@
 .DS_STORE
 apikey.txt
 .direnv
-test.xlsx
+*.xlsx
 lat-lon-gmaps-api*
